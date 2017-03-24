@@ -1,0 +1,28 @@
+{
+  "name": "sensor-demo",
+  "version": "1.0.0",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cgrohman/demo.git"
+  },
+  "author": "Cori Grohman",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cgrohman/demo/issues"
+  },
+  "homepage": "https://github.com/cgrohman/demo#readme",
+  "dependencies": {
+    "body-parser": "^1.16.0",
+    "express": "^4.14.0",
+    "express-hbs": "^1.0.4",
+    "forever": "^0.15.3",
+    "pi-gpio": "0.0.8",
+    "request": "^2.79.0",
+    "serialport": "^5.0.0-beta3",
+    "socket.io": "^1.7.3",
+    "underscore": "^1.8.3"
+  }
+}

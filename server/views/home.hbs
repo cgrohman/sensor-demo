@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+  <head>
+   {{> header}}
+   <script src="/socket.io/socket.io.js"></script>
+   <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+   <style type="text/css">
+    #stream {
+      height: 99%;
+      margin: 0px auto;
+      display: block;
+      margin-top: 20px;
+      }
+    .rotateimg180 {
+      -webkit-transform:rotate(180deg);
+      -moz-transform: rotate(180deg);
+      -ms-transform: rotate(180deg);
+      -o-transform: rotate(180deg);
+      transform: rotate(180deg);
+     }
+    td { 
+      padding: 0px 5px;
+     } 
+   </style>   
+
+    <script>
+      var socket = io();
+      socket.on('temp value', function (data){
+        console.log(data.value);
+        document.getElementById("temp").innerHTML = data.value;
+        return false;
+      });
+      socket.on('brightness', function (data){
+        console.log(data.value);
+        document.getElementById("bright").innerHTML = data.value;
+        return false;
+      });
+
+      socket.on('humidity value', function (data){
+        console.log(data.value);
+        document.getElementById("humi").innerHTML = data.value;
+        return false;
+      });
+      socket.on('liveStream', function(url) {
+        $('#stream').attr('src', url);
+        $('.start').hide();
+      });
+ 
+      function startStream() {
+        socket.emit('start-stream');
+        $('.start').hide();
+      }
+    </script> 
+  </head>
+  <body>
+    <p>{{welcomeParagraph}}</p>
+    <table>
+      <tr>
+        <td><h2>Current temperature: </h2></td>
+        <td><h2><span id='temp'></span>&#8457;</h2></td>
+      </tr>
+      <tr>
+        <td><h2>Current Brightness: </h2></td>
+        <td><h2><span id='bright'></span>&#37;</h2></td>
+      </tr>
+      <tr>
+        <td><h2>Current humidity: </h2></td>
+        <td><h2><span id='humi'></span></h2></td>
+      </tr>
+    </table>
+    <button type="button" id="" class="btn btn-info start" onclick="startStream()">Start Camera</button>
+ 
+    <div class="row">
+      <img src="" id="stream" class="rotateimg180">
+    </div>
+
+    {{>footer}}
+  </body>
+</html>
