@@ -2,7 +2,7 @@ var express    = require("express");
 var app        = express();
 var http       = require('http').Server(app);
 var bodyParser = require("body-parser");
-var gpio       = require("pi-gpio");
+//var gpio       = require("pi-gpio");
 var hbs        = require('express-hbs');
 var io         = require('socket.io')(http);
 var fs         = require('fs');
@@ -42,19 +42,19 @@ app.get('/about', (req, res)=>{
    });
 });
  
-app.post("/api/open", function(req, res){
-   var trigger = false;
-   gpio.open(26,"output", function(){
-      console.log("opened and now closing...");
-      gpio.write(26, 1);
-      });
-   res.send("Trying to toggle the LED...");
-});
+// app.post("/api/open", function(req, res){
+//    var trigger = false;
+//    gpio.open(26,"output", function(){
+//       console.log("opened and now closing...");
+//       gpio.write(26, 1);
+//       });
+//    res.send("Trying to toggle the LED...");
+// });
 
-app.post("/api/close", function(req, res){
-   gpio.close(26);
-   res.send("Closing gpio");
-});
+// app.post("/api/close", function(req, res){
+//    gpio.close(26);
+//    res.send("Closing gpio");
+// });
 
 var sockets = {};
 io.on('connection', (socket) => {

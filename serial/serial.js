@@ -2,7 +2,7 @@ const _ = require('underscore');
 const serialport = require('serialport');
 var Readline = serialport.parsers.Readline;
 
-var portName = '/dev/ttyACM1';
+var portName = '/dev/ttyACM0';
 var sp       = new serialport(portName, {
     baudRate: 115200
 });
